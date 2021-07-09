@@ -22,8 +22,8 @@ var (
 )
 
 func main() {
-	//sleep for 15 seconds. Quick fix for a situation when DB is slow to start
-	time.Sleep(15 * time.Second)
+	//sleep for 5 seconds. Quick fix for a situation when DB is slow to start
+	time.Sleep(5 * time.Second)
 	// Initialize Dependencies
 	// Service Port, Database, Logger, Cache, Message Queue etc.
 	router := gin.Default()
