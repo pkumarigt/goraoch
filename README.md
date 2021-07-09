@@ -17,6 +17,7 @@ example: docker commit a42a74dfe65f sergeyabrahamyandf/goroach
 example: docker push sergeyabrahamyandf/goroach
 
 ### Create new database in EYK
+```
 Navigate to https://eyk.ey.io/app/databases/add-database
 Cluster: <select your cluster>
 Database Name: tesdb
@@ -25,7 +26,10 @@ Engine: postgres
 Engine Version: 9.6
 Database Storage: 20
 Instance Size: Small
+
 Once database is ready note the Host and Password
+
+```
 
 ### Install eyk cli
 Follow instructions from https://support.cloud.engineyard.com/hc/en-us/articles/360057913834-Download-the-Kontainers-CLI-Tool
