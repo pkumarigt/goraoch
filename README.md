@@ -49,5 +49,4 @@ example: eyk ssologin https://eyk.lab-two.ey-dedicated-internal.ey.io
 
 ### Test the app
 run `eyk info` and note the url. Access https://url/quote
-
 example: https://goroach.lab-two.ey-dedicated-internal.ey.io/quote/
