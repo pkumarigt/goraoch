@@ -1,5 +1,5 @@
 ## Clone the repo
-`git clone git@github.com:engineyard/goroach.git`
+```git clone git@github.com:engineyard/goroach.git```
 
 ## Run application locally
 `docker-compose up -d`
