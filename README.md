@@ -35,9 +35,7 @@ Once database is ready note the Host and Password
 Follow instructions from https://support.cloud.engineyard.com/hc/en-us/articles/360057913834-Download-the-Kontainers-CLI-Tool
 
 ### Login to eyk
-Navigate to https://eyk.ey.io/app/clusters and copy the CLI login command
-Run the command in your terminal
-
+Navigate to https://eyk.ey.io/app/clusters, copy the CLI login command and run the command in your terminal
 example: eyk ssologin https://eyk.lab-two.ey-dedicated-internal.ey.io
 
 ### Create app in eyk
@@ -50,5 +48,5 @@ example: eyk ssologin https://eyk.lab-two.ey-dedicated-internal.ey.io
 `eyk builds:create sergeyabrahamyandf/goroach:latest -a goroach --procfile='web: /main'`
 
 ### Test the app
-run `eyk info` and note the url. Access https://<url>/quote
+run `eyk info` and note the url. Access https://<url>/quote`
 example: https://goroach.lab-two.ey-dedicated-internal.ey.io/quote/
