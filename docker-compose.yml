@@ -1,0 +1,48 @@
+version: "3.5"
+
+services:
+    app: 
+        build: ./
+        container_name: app
+        environment: 
+            - SERVICE_PORT=8880
+            - DB_SERVER=db
+            - DB_PORT=5432
+            - DB_USER=postgres
+            - DB_DATABASE=testdb
+            - DB_PASSWORD=postgres
+            - DEFAULT_PAGE_SIZE=20
+        ports:
+            - 8880:8880
+        volumes: 
+            - ./:/app
+        networks:
+            roachdbnet:
+                aliases:
+                    - app   
+        depends_on: 
+            - db
+    db: 
+        container_name: db
+        image: postgres:9.6.22-alpine
+        restart: always
+        environment: 
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=testdb
+            - PSQL_PORT=5432
+        logging: 
+            options: 
+                max-size: 10m
+                max-file: "3"
+        volumes: 
+            - ./postgres-data:/data
+        ports:
+            - 5432:5432
+        networks:
+            roachdbnet:
+                aliases:
+                    - db
+networks:
+    roachdbnet:
+        driver: bridge
