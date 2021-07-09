@@ -48,5 +48,5 @@ example: eyk ssologin https://eyk.lab-two.ey-dedicated-internal.ey.io
 `eyk builds:create sergeyabrahamyandf/goroach:latest -a goroach --procfile='web: /main'`
 
 ### Test the app
-run `eyk info` and note the url. Access https://<url>/quote`
+run `eyk info` and note the url. Access https://url/quote
 example: https://goroach.lab-two.ey-dedicated-internal.ey.io/quote/
