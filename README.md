@@ -41,13 +41,14 @@ example: eyk ssologin https://eyk.lab-two.ey-dedicated-internal.ey.io
 ### Create app in eyk
 `eyk apps:create goroach --no-remote`
 
-### Set environment variables for the app
-`eyk config:set PORT=8880 SERVICE_PORT=8880 DB_SERVER=svc-rdb-testdb20210528092111872700000002.cyerxl1scpna.ap-southeast-2.rds.amazonaws.com DB_PORT=5432 DB_USER=goroachuser DB_DATABASE=testdb DB_PASSWORD=kdsJRcNCXMyGxMYStb7QwcJhFQ9J9PmYP9N0YBJv DEFAULT_PAGE_SIZE=20 -a goroach`
+### Set environment variables for the app by replacing DB_SERVER, DB_USER and DB_PASSWORD with your own database parameters
+`eyk config:set PORT=8880 SERVICE_PORT=8880 DB_SERVER=<Host> DB_PORT=5432 DB_USER=<User> DB_DATABASE=testdb DB_PASSWORD=<Password> DEFAULT_PAGE_SIZE=20 -a goroach`
 
 ### Deploy the app using docker image created earlier
-`eyk builds:create sergeyabrahamyandf/goroach:latest -a goroach --procfile='web: /main'`
+`eyk builds:create <dockerhubusername>/goroach:latest -a goroach --procfile='web: /main'`
+Example: eyk builds:create sergeyabrahamyandf/goroach:latest -a goroach --procfile='web: /main'
 
 ### Test the app
-run `eyk info` and note the url. Access https://url/quote
+run `eyk info` and note the URL. Then, access the https://URL/quote in the browser. The app will respond a json data generated using the quotes from the database.
 
 example: https://goroach.lab-two.ey-dedicated-internal.ey.io/quote/
