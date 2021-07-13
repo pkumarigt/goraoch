@@ -39,16 +39,16 @@ Navigate to https://eyk.ey.io/app/clusters, copy the CLI login command and run t
 example: eyk ssologin https://eyk.lab-two.ey-dedicated-internal.ey.io
 
 ### Create app in eyk
-`eyk apps:create goroach --no-remote`
+`eyk apps:create goroachapp --no-remote`
 
 ### Set environment variables for the app by replacing DB_SERVER, DB_USER and DB_PASSWORD with your own database parameters
-`eyk config:set PORT=8880 SERVICE_PORT=8880 DB_SERVER=<Host> DB_PORT=5432 DB_USER=<User> DB_DATABASE=testdb DB_PASSWORD=<Password> DEFAULT_PAGE_SIZE=20 -a goroach`
+`eyk config:set PORT=8880 SERVICE_PORT=8880 DB_SERVER=<Host> DB_PORT=5432 DB_USER=<User> DB_DATABASE=testdb DB_PASSWORD=<Password> DEFAULT_PAGE_SIZE=20 -a goroachapp`
 
 ### Deploy the app using docker image created earlier
-`eyk builds:create <dockerhubusername>/goroach:latest -a goroach --procfile='web: /main'`
-Example: eyk builds:create sergeyabrahamyandf/goroach:latest -a goroach --procfile='web: /main'
+`eyk builds:create <dockerhubusername>/goroach:latest -a goroachapp --procfile='web: /main'`
+Example: eyk builds:create sergeyabrahamyandf/goroach:latest -a goroachapp --procfile='web: /main'
 
 ### Test the app
 run `eyk info` and note the URL. Then, access the https://URL/quote in the browser. The app will respond a json data generated using the quotes from the database.
 
-example: https://goroach.lab-two.ey-dedicated-internal.ey.io/quote/
+example: https://goroachapp.lab-two.ey-dedicated-internal.ey.io/quote/
