@@ -8,8 +8,8 @@
 `curl http://127.0.0.1:8880/quote/`
 
 ### Commit app container to image
-Run docker ps and note the id of app container
-`docker commit <id> <dockerhubusername>/goroach`
+Run `docker ps` and note the id of app container
+Then, run `docker commit <id> <dockerhubusername>/goroach`
 example: docker commit a42a74dfe65f sergeyabrahamyandf/goroach
 
 ### Push to dockerhub
