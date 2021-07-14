@@ -1,0 +1,3 @@
+tasks:
+  - name: EYK_LOGIN
+    init: eyk login --username=$EYK_USER --password=EYK_PASS $EYK_DOMAIN
