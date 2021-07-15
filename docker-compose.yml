@@ -6,7 +6,7 @@ services:
         container_name: app
         environment: 
             - SERVICE_PORT=8880
-            - DB_SERVER=db
+            - DB_SERVER=pg
             - DB_PORT=5432
             - DB_USER=postgres
             - DB_DATABASE=testdb
@@ -42,7 +42,7 @@ services:
         networks:
             roachdbnet:
                 aliases:
-                    - db
+                    - pg
 networks:
     roachdbnet:
         driver: bridge
