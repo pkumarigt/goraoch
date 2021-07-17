@@ -1,9 +1,10 @@
 FROM golang:alpine AS builder
 ARG TARGETARCH
+ARG TARGETOS=linux
 # Set necessary environmet variables needed for our image
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
-    GOOS=linux \
+    GOOS=${TARGETOS} \
     GOARCH=${TARGETARCH}
 
 # Move to working directory /build
