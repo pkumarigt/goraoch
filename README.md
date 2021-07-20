@@ -25,7 +25,7 @@ Once database is ready note the Host and Password
 ### Login to eyk from terminal ( one time setup )
 Request for a non browser based login. Get the client.json contents set it in variable
 
-`gp env EYK_CLIENT='{"username":"nonssouser","ssl_verify":true,"controller":"https://eyk.playground.eyk-central.ey.io","token":"c49a42a2d215df54c7ffc7820d208f0357e35bb5","response_limit":0}'
+`gp env EYK_CLIENT='{"username":"nonssouser","ssl_verify":true,"controller":"https://eyk.playground.eyk-central.ey.io","token":"xxxxxxxx","response_limit":0}'
 `eval $(gp env -e)`
 `mkdir -p ~/.eyk && echo $EYK_CLIENT > ~/.eyk/client.json`
 
@@ -50,7 +50,7 @@ Set up a goroach repo in ECR
 set the ENV according to your ECR seetings
 
 `gp env ECR_REGISTRY=public.ecr.aws/xxxxxxx/goroach`
-`gp env ECR_TAG=dev`
+`gp env ECR_TAG=dev-amd64`
 `eval $(gp env -e)`
 
 Default is arm64 in devspaces EYK is not arm yet.
@@ -58,11 +58,22 @@ Default is arm64 in devspaces EYK is not arm yet.
 `docker tag goroach "${ECR_REGISTRY}:${ECR_TAG}"`
 `docker push "${ECR_REGISTRY}:${ECR_TAG}"`
 
+### Multiarchitecture builds
+
+If you have 2 docker images, you can combine them under 1 tag using manifest-tool. 
+manifest-tool is pre installed in DevSpaces.
+
+`manifest-tool push from-args \
+    --platforms linux/arm64,linux/amd64 \
+    --template public.ecr.aws/b1o4t7o5/goroach:dev-ARCH \
+    --target public.ecr.aws/b1o4t7o5/goroach:dev`
+
 ### Create app in eyk
 `eyk apps:create goroachapp --no-remote`
 
 Set the app vieweable in UI. Mostly you email id
 `eyk perms:create <user> --app=goroachapp`
+  
 ### Set environment variables for the app by replacing DB_SERVER, DB_USER and DB_PASSWORD with your own database parameters
 `eyk config:set PORT=8880 SERVICE_PORT=8880 DB_SERVER=<Host> DB_PORT=5432 DB_USER=goroachuser DB_DATABASE=testdb DB_PASSWORD=<Password> DEFAULT_PAGE_SIZE=20 -a goroachapp`
 
@@ -72,6 +83,6 @@ Set the app vieweable in UI. Mostly you email id
 ### Test the app
 run `eyk apps:info --app=goroachapp` and note the URL. Then, access the https://URL/quote in the browser. The app will respond a json data generated using the quotes from the database.
 
-example: https://goroachapp.lab-two.ey-dedicated-internal.ey.io/quote/
+example: https://xxxxxx.ey.io/quote/
 
 eyk ps:console goroachapp-web-85d465fddb-vdjpf web goroachapp /bin/bash --debug=true
